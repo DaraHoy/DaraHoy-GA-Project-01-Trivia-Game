@@ -1,2 +1,16 @@
-.answer {
+header {
+text-align: center;
+padding: 10px;
+margin: auto; 0;
 }
+ #questions-container{
+   background-color: white;
+   padding: 10px;
+ }
+html{
+  background-color: #00B2CF;
+}
+ #question{
+   text-align: center;
+
+ }
