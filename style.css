@@ -4,13 +4,27 @@ padding: 10px;
 margin: auto; 0;
 }
  #questions-container{
+   font-family: "Helvetica Nue", sans-serif;
    background-color: white;
-   padding: 10px;
+   border-radius: 10px;
+
  }
 html{
-  background-color: #00B2CF;
+  background-color: #FF0023;
 }
  #question{
    text-align: center;
 
  }
+
+p {
+  font-family: "Helvetica Nue", sans-serif;
+}
+
+h1{
+  color: white;
+  font-size: 78px;
+  font-family: "Helvetica Nue", sans-serif;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #F0C400;
+}
