@@ -31,3 +31,12 @@ h1{
   -webkit-text-stroke-width: 2.5px;
   -webkit-text-stroke-color: #F0C400;
 }
+
+
+#timer{
+  color: white;
+  font-size: 78px;
+  font-family: "Helvetica Nue", sans-serif;
+  -webkit-text-stroke-width: 2.5px;
+  -webkit-text-stroke-color: #F0C400;
+}

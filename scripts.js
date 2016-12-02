@@ -1,3 +1,7 @@
+
+//hides game Answers
+
+
 //Variables
 let $question = $('#question');
 let $ansA = $('#answerA');
@@ -6,23 +10,22 @@ let $ansC = $('#answerC');
 let $ansD = $('#answerD');
 let $ansR = $('#answerR');
 let $timer = $('#timer');
-let timeRemaining = 11;
+let timeRemaining = 10;
 let answer;
+let questionSet;
+let isCorrect = false;
 
 
 //Functions
 //Populate trivia: Questions & Answers A, B, C, D
 let getQuestion = function() {
+    resetAnswer();
     let maxOptions = 4;
     let minOptions = 0;
     let randomQuestionBankIndex = Math.floor(Math.random() * (maxOptions - minOptions + 1)) + 0;
     let i = randomQuestionBankIndex;
-    console.log(i);
-    console.log(questionBank[i]);
     questionSet = questionBank[i];
-    //passes answer & question from questionSet[0] to answer variable
     answer = questionSet.answer;
-    console.log(questionSet.answer);
     //Randomize the placement of choices A,B,C,D
     randomizeChoice();
 };
@@ -33,7 +36,6 @@ let randomizeChoice = function() {
     let shuffled = questionSet.answer_choices.sort(function() {
         return 0.5 - Math.random();
     });
-    console.log(shuffled);
     appendChoices(shuffled);
 };
 
@@ -52,23 +54,17 @@ let appendChoices = function(shuffled) {
 let correctAnswer = function(choice) {
     if (choice === answer) {
         console.log('WIN');
-        alert("Nice! Keep going!");
-        resetAnswer();
         getQuestion();
-        addSeconds = timeRemaining + 5;
-        $timer.html(addSeconds);
+        isCorrect = true;
+        alert("NICE! +5 SECONDS");
     } else {
         console.log('LOSE');
-        alert("Try again whelp");
+        alert("WRONG");
         resetAnswer();
         getQuestion();
     }
 };
 
-let removeWelcome = function(){
-  $(".play").hide();
-  getQuestion();
-};
 
 //Resets Question set
 let resetAnswer = function() {
@@ -81,15 +77,35 @@ let resetAnswer = function() {
 };
 
 
-//countdown
-let countDown = setInterval(function() {
-    if (timeRemaining <=1){
-      clearInterval(countDown);
-    }
-    timeRemaining--;
-    $timer.html(timeRemaining);
-    console.log(timeRemaining);
-}, 1000);
+//countdown and clocks
+let countDown = function() {
+    let startClock = setInterval(function() {
+        if (isCorrect) {
+            timeRemaining += 5;
+            isCorrect = false;
+        }
+        if (timeRemaining <= 1) {
+            clearInterval(startClock);
+            $timer.html('You Whelp!');
+        } else {
+        timeRemaining--;
+        $timer.html(timeRemaining);
+        console.log(timeRemaining);
+      }
+    }, 1000);
+    $timer.show();
+};
+
+//Starts game and shows answer fields
+let removeWelcome = function(){
+  $(".play").hide();
+  $('.answer').show();
+  getQuestion();
+  countDown();
+};
+
+//Lose condition
+
 
 
 // Event handlers
@@ -114,5 +130,8 @@ $ansD.on('click', function() {
     correctAnswer(choice);
 });
 
+clearInterval(countDown);
+$timer.hide();
+$('.answer').hide();
 $('.play').on('click', removeWelcome);
 $('#restart').on('click', resetAnswer);
