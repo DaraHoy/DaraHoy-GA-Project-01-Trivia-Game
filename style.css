@@ -18,13 +18,16 @@ html{
  }
 
 p {
+  font-size: 18px;
+  color: white;
   font-family: "Helvetica Nue", sans-serif;
 }
+
 
 h1{
   color: white;
   font-size: 78px;
   font-family: "Helvetica Nue", sans-serif;
-  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-width: 2.5px;
   -webkit-text-stroke-color: #F0C400;
 }
