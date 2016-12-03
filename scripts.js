@@ -11,6 +11,7 @@ let $ansD = $('#answerD');
 let $ansR = $('#answerR');
 let $timer = $('#timer');
 let timeRemaining = 10;
+let score = 0;
 let answer;
 let questionSet;
 let isCorrect = false;
@@ -57,6 +58,7 @@ let correctAnswer = function(choice) {
         getQuestion();
         isCorrect = true;
         alert("NICE! +5 SECONDS");
+        score = score + 100;
     } else {
         console.log('LOSE');
         alert("WRONG");
@@ -84,9 +86,11 @@ let countDown = function() {
             timeRemaining += 5;
             isCorrect = false;
         }
+        //Lose condition
         if (timeRemaining <= 1) {
             clearInterval(startClock);
-            $timer.html('You Whelp!');
+            $timer.html('Score: ' + score);
+            $('#replay').show();
         } else {
         timeRemaining--;
         $timer.html(timeRemaining);
@@ -104,7 +108,14 @@ let removeWelcome = function(){
   countDown();
 };
 
-//Lose condition
+//Replay game
+let replayGame = function(){
+  $('#replay').hide();
+  timeRemaining = 10;
+  score = 0;
+  getQuestion();
+  countDown();
+};
 
 
 
@@ -132,6 +143,8 @@ $ansD.on('click', function() {
 
 clearInterval(countDown);
 $timer.hide();
+$('#replay').hide();
+$('#replay').on('click', replayGame);
 $('.answer').hide();
 $('.play').on('click', removeWelcome);
 $('#restart').on('click', resetAnswer);
