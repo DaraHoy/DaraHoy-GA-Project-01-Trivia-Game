@@ -10,7 +10,6 @@ let $ansC = $('#answerC');
 let $ansD = $('#answerD');
 let $ansR = $('#answerR');
 let $timer = $('#timer');
-let timeRemaining = 10;
 let score = 0;
 let answer;
 let questionSet;
@@ -79,6 +78,10 @@ let resetAnswer = function() {
 };
 
 
+
+
+let timeRemaining = 10;
+
 //countdown and clocks
 let countDown = function() {
     let startClock = setInterval(function() {
@@ -93,12 +96,25 @@ let countDown = function() {
             $('#replay').show();
         } else {
         timeRemaining--;
+        // displayTimeRemaining();
         $timer.html(timeRemaining);
         console.log(timeRemaining);
       }
     }, 1000);
     $timer.show();
 };
+
+// //Displays time remaining
+// let displayTimeRemaining = function(){
+//   let count = timeRemaining / 100;
+// //
+//   $timer.html(count.toPrecision(count.toString().length));
+// };
+
+
+
+
+
 
 //Starts game and shows answer fields
 let removeWelcome = function(){
