@@ -4,12 +4,11 @@
 
 //Variables
 let $question = $('#question');
-let $ansA = $('#answerA');
-let $ansB = $('#answerB');
-let $ansC = $('#answerC');
-let $ansD = $('#answerD');
-let $ansR = $('#answerR');
-let $timer = $('#timer');
+let $ansA = $('#choice-a');
+let $ansB = $('#choice-b');
+let $ansC = $('#choice-c');
+let $ansD = $('#choice-d');
+let $timer = $('#time-left');
 let score = 0;
 let answer;
 let questionSet;
@@ -80,13 +79,13 @@ let resetAnswer = function() {
 
 
 
-let timeRemaining = 10;
+let timeRemaining = 100;
 
 //countdown and clocks
 let countDown = function() {
     let startClock = setInterval(function() {
         if (isCorrect) {
-            timeRemaining += 5;
+            timeRemaining += 50;
             isCorrect = false;
         }
         //Lose condition
@@ -96,20 +95,20 @@ let countDown = function() {
             $('#replay').show();
         } else {
         timeRemaining--;
-        // displayTimeRemaining();
-        $timer.html(timeRemaining);
+        displayTimeRemaining();
+        // $timer.html(timeRemaining);
         console.log(timeRemaining);
       }
-    }, 1000);
+    }, 100);
     $timer.show();
 };
 
-// //Displays time remaining
-// let displayTimeRemaining = function(){
-//   let count = timeRemaining / 100;
-// //
-//   $timer.html(count.toPrecision(count.toString().length));
-// };
+//Displays time remaining
+let displayTimeRemaining = function(){
+  let count = timeRemaining / 10;
+//
+  $timer.html(count.toPrecision(count.toString().length));
+};
 
 
 
@@ -117,9 +116,9 @@ let countDown = function() {
 
 
 //Starts game and shows answer fields
-let removeWelcome = function(){
-  $(".play").hide();
-  $('.answer').show();
+let newGame = function(){
+  $('.answer-container').show();
+  resetAnswer();
   getQuestion();
   countDown();
 };
@@ -161,6 +160,6 @@ clearInterval(countDown);
 $timer.hide();
 $('#replay').hide();
 $('#replay').on('click', replayGame);
-$('.answer').hide();
-$('.play').on('click', removeWelcome);
+$('.answer-container').hide();
+$('.play').on('click', newGame);
 $('#restart').on('click', resetAnswer);
