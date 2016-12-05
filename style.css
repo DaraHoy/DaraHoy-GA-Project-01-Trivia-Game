@@ -1,3 +1,4 @@
+
 body {
     background-color: #212121;
 }
@@ -46,4 +47,43 @@ body {
 
 #links a:hover {
     opacity: 1.0;
+}
+
+.answer-container{
+  height: 300px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: #FF5722;
+  margin: -10px;
+
+}
+
+.answer-container button{
+    background-color: #FF5722;
+}
+
+.answer-items{
+  color: white;
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bolder;
+  height: 75px;
+  width: 40%;
+  border-style: dotted;
+  border-radius: 27px;
+  border-color: white;
+  margin: 0px 10px 0px 10px;
+  padding: 5px;
+}
+
+.answer-items:hover{
+  background-color: white;
+  color: black;
+  border-style: solid;
+  border-color: white;
+  box-shadow: 4px 4px 1px black;
+
+
 }
