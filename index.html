@@ -3,47 +3,75 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Cinema Nerd Trivia</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <title>Trivia Rush: Gold Edition</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,500" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript" src="questionbank.js">
     </script>
 </head>
 
 
 <body>
-    <header>
-        <div id='title'>Trivia Rush</div>
-        <div class='play' id='quote'>If you must blink. Do it now.</div>
-        <button class='play' type="button" name="play">PLAY</button>
-        <div id='timer'>10</div>
-        <button id='replay' type="button" name="play">PLAY Again?</button>
-    </header>
+
+    <div class="trivia-rush-container">
 
 
-    <section id="questions-container">
-        <div>
-            <h2 id="question"></h2>
+        <div id='header-container'>
+            <div class="title"><span id='title-trivia'>Trivia</span><span id='title-rush'>Rush!</span></div>
+
         </div>
-    </section>
+        <div id="links">
+            <a href="#">New Game</a>
+            <a href="#">How To Play</a>
+        </div>
+
+        <div class="game-screen">
+
+            <div class="left-bonus">
+                <p>Bonus</p>
+                <ul>
+                    <li>x 10</li>
+                    <li>x 5</li>
+                    <li>x 3</li>
+                    <li>x 1</li>
+                </ul>
+            </div>
+
+            <div class="main">
+                <div class="timer">
+                    <p>10.0</p>
+
+                </div>
+                <div class="question">
+                    <p>Question:</p>
+
+                </div>
+
+            </div>
+
+            <div class="right-score">
+                <p>High Score</p>
+                <ol>
+                    <li>Top 5</li>
+                    <li>Top 5</li>
+                    <li>Top 5</li>
+                    <li>Top 5</li>
+                    <li>Top 5</li>
+                    <li>Nobody</li>
+                </ol>
+            </div>
+        </div>
+        <div class="answer-container">
+            <button class="answer-items" type="button" name="button">ANSWER A</button>
+            <button class="answer-items" type="button" name="button">ANSWER B</button>
+            <button class="answer-items" type="button" name="button">ANSWER C</button>
+            <button class="answer-items" type="button" name="button">ANSWER D</button>
+        </div>
 
 
-    <section id="answers-container">
-        <div class="answer">
-            <p>A: <span id="answerA"></span></p>
-        </div>
-        <div class="answer">
-            <p>B: <span id="answerB"></span></p>
-        </div>
-        <div class="answer">
-            <p>C: <span id="answerC"></span></p>
-        </div>
-        <div class="answer">
-            <p>D: <span id="answerD"></span></p>
-        </div>
-    </section>
-
-
+    </div>
+    </div>
     <script type="text/javascript" src="scripts.js"></script>
 </body>
 

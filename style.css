@@ -1,0 +1,49 @@
+body {
+    background-color: #212121;
+}
+
+#header-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: -10px;
+    box-shadow: 5px;
+    background-color: #FF5722;
+}
+
+.title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 64px;
+    color: white;
+}
+
+#title-trivia {
+    font-style: italic;
+    font-weight: 300;
+}
+
+#title-rush {
+    font-weight: bold;
+}
+
+#links {
+    text-decoration: none;
+    background-color: #FF5722;
+    display: flex;
+    justify-content: center;
+    margin: -10px;
+}
+
+#links a {
+    font-weight: 300;
+    padding: 5px;
+    margin: 1px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+    opacity: 0.7;
+}
+
+#links a:hover {
+    opacity: 1.0;
+}
