@@ -1,30 +1,25 @@
-
-//hides game Answers
-
-
 //Variables
 let $question = $('#question');
-let $ansA = $('#answerA');
-let $ansB = $('#answerB');
-let $ansC = $('#answerC');
-let $ansD = $('#answerD');
-let $ansR = $('#answerR');
-let $timer = $('#timer');
-let timeRemaining = 10;
+let $ansA = $('#choice-a');
+let $ansB = $('#choice-b');
+let $ansC = $('#choice-c');
+let $ansD = $('#choice-d');
+let $timer = $('#time-left');
 let score = 0;
 let answer;
 let questionSet;
 let isCorrect = false;
+let hiScore = localStorage.getItem("highScore");
+let hiScoreValue = 0;
 
-
-//Functions
 //Populate trivia: Questions & Answers A, B, C, D
 let getQuestion = function() {
     resetAnswer();
-    let maxOptions = 4;
+    let maxOptions = 20;
     let minOptions = 0;
-    let randomQuestionBankIndex = Math.floor(Math.random() * (maxOptions - minOptions + 1)) + 0;
+    let randomQuestionBankIndex = Math.floor((Math.random() * maxOptions) + 1);
     let i = randomQuestionBankIndex;
+    console.log(i);
     questionSet = questionBank[i];
     answer = questionSet.answer;
     //Randomize the placement of choices A,B,C,D
@@ -58,10 +53,10 @@ let correctAnswer = function(choice) {
         getQuestion();
         isCorrect = true;
         alert("NICE! +5 SECONDS");
-        score = score + 100;
+        score = score + (100 + (timeRemaining * 2));
     } else {
         console.log('LOSE');
-        alert("WRONG");
+        alert("WRONG! Correct answer was " + answer + ".");
         resetAnswer();
         getQuestion();
     }
@@ -79,31 +74,61 @@ let resetAnswer = function() {
 };
 
 
+
+
+let timeRemaining = 100;
+
 //countdown and clocks
 let countDown = function() {
     let startClock = setInterval(function() {
         if (isCorrect) {
-            timeRemaining += 5;
+            timeRemaining += 50;
             isCorrect = false;
         }
         //Lose condition
         if (timeRemaining <= 1) {
             clearInterval(startClock);
             $timer.html('Score: ' + score);
-            $('#replay').show();
+$question.html('High Score: '+ hiScore);
+            updateHiScore(score);
+
+            $('.answer-container').hide();
         } else {
         timeRemaining--;
-        $timer.html(timeRemaining);
+        displayTimeRemaining();
+        // $timer.html(timeRemaining);
         console.log(timeRemaining);
       }
-    }, 1000);
+    }, 100);
     $timer.show();
 };
 
+//Displays time remaining
+let displayTimeRemaining = function(){
+  let count = timeRemaining / 1;
+//
+  $timer.html(count.toPrecision(count.toString().length));
+};
+
+//HiScore function
+let updateHiScore = function(){
+  if (score >= hiScore){
+
+    highScoreValue = score;
+    localStorage.setItem("highScore", highScoreValue);
+    $question.html('NEW High Score! '+ score);
+  }
+};
+
+
+
+
 //Starts game and shows answer fields
-let removeWelcome = function(){
-  $(".play").hide();
-  $('.answer').show();
+let newGame = function(){
+  $('.answer-container').show();
+  timeRemaining = 100;
+  score = 0;
+  resetAnswer();
   getQuestion();
   countDown();
 };
@@ -111,7 +136,7 @@ let removeWelcome = function(){
 //Replay game
 let replayGame = function(){
   $('#replay').hide();
-  timeRemaining = 10;
+  timeRemaining = 100;
   score = 0;
   getQuestion();
   countDown();
@@ -144,7 +169,8 @@ $ansD.on('click', function() {
 clearInterval(countDown);
 $timer.hide();
 $('#replay').hide();
+$('.question-text').on('click', newGame);
 $('#replay').on('click', replayGame);
-$('.answer').hide();
-$('.play').on('click', removeWelcome);
+$('.answer-container').hide();
+$('.play').on('click', newGame);
 $('#restart').on('click', resetAnswer);
