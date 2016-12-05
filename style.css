@@ -95,7 +95,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100px;
+    height: auto;
     width: 50%;
     font-family: 'Roboto', sans-serif;
     font-size: 27px;
@@ -103,7 +103,7 @@ body {
     color: black;
     border-radius: 20px;
     border-style: dashed;
-    padding: 5px;
+    padding: 15px;
 }
 
 .answer-container {
