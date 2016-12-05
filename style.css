@@ -59,14 +59,12 @@ body {
     background-color: #b71c1c;
 }
 
-
 .main-container {
     background-color: #b71c1c;
     display: flex;
     flex-wrap: justify-content: center;
     align-items: center;
 }
-
 
 .timer-container {
     display: flex;

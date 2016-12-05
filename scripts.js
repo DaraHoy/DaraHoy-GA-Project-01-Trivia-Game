@@ -11,6 +11,7 @@ let questionSet;
 let isCorrect = false;
 let hiScore = localStorage.getItem("highScore");
 let hiScoreValue = 0;
+let timeRemaining = 100;
 
 //Populate trivia: Questions & Answers A, B, C, D
 let getQuestion = function() {
@@ -26,7 +27,6 @@ let getQuestion = function() {
     randomizeChoice();
 };
 
-
 //Randomize answer positions
 let randomizeChoice = function() {
     let shuffled = questionSet.answer_choices.sort(function() {
@@ -34,7 +34,6 @@ let randomizeChoice = function() {
     });
     appendChoices(shuffled);
 };
-
 
 //Push choices up into DOM Elements
 let appendChoices = function(shuffled) {
@@ -44,7 +43,6 @@ let appendChoices = function(shuffled) {
     $ansD.append(shuffled[3]);
     $question.append(questionSet.question);
 };
-
 
 //Compare selected choice to the answer in the Answer Object
 let correctAnswer = function(choice) {
@@ -62,7 +60,6 @@ let correctAnswer = function(choice) {
     }
 };
 
-
 //Resets Question set
 let resetAnswer = function() {
     $question.html('');
@@ -72,11 +69,6 @@ let resetAnswer = function() {
     $ansD.html('');
     console.log('Removed Question Set');
 };
-
-
-
-
-let timeRemaining = 100;
 
 //countdown and clocks
 let countDown = function() {
@@ -89,60 +81,55 @@ let countDown = function() {
         if (timeRemaining <= 1) {
             clearInterval(startClock);
             $timer.html('Score: ' + score);
-$question.html('High Score: '+ hiScore);
+            $question.html('High Score: ' + hiScore);
             updateHiScore(score);
 
             $('.answer-container').hide();
         } else {
-        timeRemaining--;
-        displayTimeRemaining();
-        // $timer.html(timeRemaining);
-        console.log(timeRemaining);
-      }
+            timeRemaining--;
+            displayTimeRemaining();
+            // $timer.html(timeRemaining);
+            console.log(timeRemaining);
+        }
     }, 100);
     $timer.show();
 };
 
 //Displays time remaining
-let displayTimeRemaining = function(){
-  let count = timeRemaining / 1;
-//
-  $timer.html(count.toPrecision(count.toString().length));
+let displayTimeRemaining = function() {
+    let count = timeRemaining / 1;
+    //
+    $timer.html(count.toPrecision(count.toString().length));
 };
 
 //HiScore function
-let updateHiScore = function(){
-  if (score >= hiScore){
+let updateHiScore = function() {
+    if (score >= hiScore) {
 
-    highScoreValue = score;
-    localStorage.setItem("highScore", highScoreValue);
-    $question.html('NEW High Score! '+ score);
-  }
+        highScoreValue = score;
+        localStorage.setItem("highScore", highScoreValue);
+        $question.html('NEW High Score ' + score + '!');
+    }
 };
 
-
-
-
 //Starts game and shows answer fields
-let newGame = function(){
-  $('.answer-container').show();
-  timeRemaining = 100;
-  score = 0;
-  resetAnswer();
-  getQuestion();
-  countDown();
+let newGame = function() {
+    $('.answer-container').show();
+    timeRemaining = 100;
+    score = 0;
+    resetAnswer();
+    getQuestion();
+    countDown();
 };
 
 //Replay game
-let replayGame = function(){
-  $('#replay').hide();
-  timeRemaining = 100;
-  score = 0;
-  getQuestion();
-  countDown();
+let replayGame = function() {
+    $('#replay').hide();
+    timeRemaining = 100;
+    score = 0;
+    getQuestion();
+    countDown();
 };
-
-
 
 // Event handlers
 $ansA.on('click', function() {
