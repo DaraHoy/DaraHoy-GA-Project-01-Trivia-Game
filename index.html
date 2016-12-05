@@ -3,48 +3,39 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Cinema Nerd Trivia</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <title>Trivia Rush: Gold Edition</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,500" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript" src="questionbank.js">
     </script>
 </head>
 
-
 <body>
-    <header>
-        <h1 id='title'>Trivia Rush</h1>
-        <h1 class='play'>If you must blink. Do it now.</h1>
-        <button class='play' type="button" name="play">PLAY</button>
-        <h2 id='timer'></h2>
-    </header>
-
-
-    <section id="questions-container">
-        <div>
-            <h2 id="question"></h2>
+    <div class="trivia-rush-container">
+        <div id='header-container'>
+            <div class="title"><span id='title-trivia'>Trivia</span><span id='title-rush'>Rush!</span></div>
         </div>
-    </section>
-
-
-    <section id="answers-container">
-        <div class="answer">
-            <p>A: <span id="answerA"></span></p>
+        <div id="links">
+            <a href="#"><span class='play'>New Game</span></a>
+            <a href="#">How To Play</a>
         </div>
-        <div class="answer">
-            <p>B: <span id="answerB"></span></p>
+        <div class="timer-container">
+            <div class="timer">
+                <p><span id='time-left'>10.0</span></p>
+            </div>
         </div>
-        <div class="answer">
-            <p>C: <span id="answerC"></span></p>
+    </div>
+    <div class="questions-container">
+        <div class="question-text"><span id='question'>If you must blink, do it now.</span>
         </div>
-        <div class="answer">
-            <p>D: <span id="answerD"></span></p>
-        </div>
-    </section>
-
-    <button id="restart" type="button" name="reset"></button>
-
-
+    </div>
+    <div class="answer-container">
+        <button class="answer-items" type="button" name="button" id='choice-a'><span>ANSWER A</span></button>
+        <button class="answer-items" type="button" name="button" id='choice-b'><span>ANSWER B</span></button>
+        <button class="answer-items" type="button" name="button" id='choice-c'><span>ANSWER C</span></button>
+        <button class="answer-items" type="button" name="button" id='choice-d'><span>ANSWER D</span></button>
+    </div>
     <script type="text/javascript" src="scripts.js"></script>
 </body>
 
